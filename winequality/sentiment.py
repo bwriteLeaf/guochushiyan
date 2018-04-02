@@ -44,12 +44,19 @@ def getFileName(docCnt,option,param_m,param_h,param_l):
     return dataFile,attCnt,resFile
 
 def alignDate(wti_date,wti_value,senDate):
+    ret_date = []
+    ret_value = []
     for i in range(0,len(wti_date)):
+        if wti_date[i] in senDate:
+            ret_date.append(wti_date[i])
+            ret_value.append(wti_value[i])
+    return  ret_date,ret_value
+
 
 
 def dataPre(docCnt,option,param_m,param_h,param_l):
 
-    inPathHead = "C:/Users/user/Documents/YJS/国储局Ⅱ期/实验/guochushiyan/reuters/reuters_"
+    inPathHead = "C:/Users/user/Documents/YJS/国储局Ⅱ期/实验/reuters/reuters_"
     outPath = getFileName(docCnt,option,param_m,param_h,param_l)[0]
     wtiPath = "wti-daliy-use.csv"
 
@@ -125,12 +132,17 @@ def dataPre(docCnt,option,param_m,param_h,param_l):
     wti_date = tmp[1:, 0].astype(np.str)  # 加载日期部分
     wti_value = tmp[1:, 1].astype(np.float)  # 加载数据部分
 
-    timeobj = datetime.datetime.strptime(wti_date, "%Y/%m/%d")
-    wti_time = timeobj.strftime("%Y/%m/%d")
+    wti_time = []
+    for i in range(0,len(wti_date)):
+        timeobj = datetime.datetime.strptime(wti_date[i], "%Y/%m/%d")
+        wti_time.append(timeobj.strftime("%Y/%m/%d"))
+    wti_date = wti_time
 
-    wti_value = alignDate(wti_date,wti_value,senDate)
+    wti_date,wti_value = alignDate(wti_date,wti_value,senDate)
     wti_y = getUpDown(wti_value)
     wti_value = sklearn.preprocessing.scale(wti_value)
+
+    senDate,senValue=alignDate(senDate,senValue,wti_date)
 
     id = lineChartPlot([wti_value,senValue],["wti","sentiment"],wti_date)
     f = plt.figure(id)
@@ -192,13 +204,9 @@ def lineChartPlot(dataList, dataLabelList, xAxisLabelList, xLable=None, yLable=N
         ys = dataList[i]
         l = plt.plot(xs, ys, label=dataLabelList[i])
         legends.append(l)
-        for x, y in zip(xs, ys):
-            plt.plot((x,), (y,), 'ko', markersize=3)  # TODO 修改点颜色与线条颜色统一
-            plt.text(x, y, '%.2f' % (y))
 
     if case_cnt >= 2:
-        plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
-                   ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
+        plt.legend()
 
     if yLable is not None:
         plt.ylabel(yLable)
