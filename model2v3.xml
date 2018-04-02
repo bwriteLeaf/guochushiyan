@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TSCXML
+	xmlns="http://www.ibm.com/software/analytics/spss/xml/components/time-series"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ibm.com/software/analytics/spss/xml/components/time-series www.ibm.com/software/analytics/spss/xml/components/time-series-1.0.xsd">
+	<Header>
+		<Application
+			name="IBM SPSS Statistics"
+			version="22.0.0.0"/>
+	</Header>
+	<DataDictionary/>
+	<ARIMAModel
+		modelName="模型_1"
+		modelDescriptor="油价差分_ARIMA"
+		variableID="油价差分">
+		<ConstantTerm>
+			<EstimatedParameter>11.1867676457815 10.2063879342431</EstimatedParameter>
+		</ConstantTerm>
+		<Autoregression>
+			<NonSeasonalFactor>
+				<LagTerm
+					lag="1">
+					<EstimatedParameter>-0.16495831983797 0.0481445344104827</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="2">
+					<EstimatedParameter>-0.0103974531193623 0.0489920824847199</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="3">
+					<EstimatedParameter>-0.00418257694357575 0.0488447832058791</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="4">
+					<EstimatedParameter>-0.0236203272204351 0.0488301371798985</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="5">
+					<EstimatedParameter>-0.000655623258996723 0.0488826968363995</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="6">
+					<EstimatedParameter>-0.0149571239920781 0.0489474682479038</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="7">
+					<EstimatedParameter>0.00690952412326554 0.0489593863713786</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="8">
+					<EstimatedParameter>-0.158359821359832 0.0484289371654003</EstimatedParameter>
+				</LagTerm>
+			</NonSeasonalFactor>
+		</Autoregression>
+		<PredictorEffect
+			variableID="时间序列">
+			<Numerator>
+				<NonSeasonalFactor>
+					<ZeroLagTerm>
+						<EstimatedParameter>-0.000245395947728667 0.000255220527745927</EstimatedParameter>
+					</ZeroLagTerm>
+				</NonSeasonalFactor>
+			</Numerator>
+		</PredictorEffect>
+		<PredictorEffect
+			variableID="VAR00001">
+			<Numerator>
+				<NonSeasonalFactor>
+					<ZeroLagTerm>
+						<EstimatedParameter>-0.0292949746420265 0.0107510958212254</EstimatedParameter>
+					</ZeroLagTerm>
+				</NonSeasonalFactor>
+			</Numerator>
+		</PredictorEffect>
+		<ARIMAMLState
+			periodDeficit="0">
+			<PredictorState/>
+			<PredictorState/>
+			<KalmanState>
+				<FinalOmega>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</FinalOmega>
+				<FinalStateVector>0.087253320227113 -0.360188210359442 -0.744942759675813 -0.489431592145124 -0.305397208501426 -0.314200676722757 -0.340415649821954 0.730543984920738</FinalStateVector>
+			</KalmanState>
+		</ARIMAMLState>
+		<EstimationInfo
+			periodStartIndex="0"
+			periodLength="435"
+			degreesOfFreedom="424">
+			<Statistic
+				type="errVariance">8.68769151443549</Statistic>
+			<Statistic
+				type="meanSqrErr">8.68846395160489</Statistic>
+			<Statistic
+				type="rootMeanSqrErr">2.9476200487181</Statistic>
+			<Statistic
+				type="meanAbsPctErr">129.846174140839</Statistic>
+			<Statistic
+				type="meanAbsErr">2.20339555956494</Statistic>
+			<Statistic
+				type="maxAbsPctErr">1991.61397268295</Statistic>
+			<Statistic
+				type="maxAbsErr">13.7502079430083</Statistic>
+			<Statistic
+				type="rSqr">0.0921875616038033</Statistic>
+			<Statistic
+				type="normBayesIC">2.3156256030602</Statistic>
+			<Statistic
+				type="logLikelihood">-1082.0037307584</Statistic>
+			<Statistic
+				type="akaikeIC">2186.00746151679</Statistic>
+			<Statistic
+				type="bayesIC">2230.83626785877</Statistic>
+			<Statistic
+				type="stationaryRSqr">0.0921875616038033</Statistic>
+			<LjungBoxStatistic
+				k="18"
+				degreesOfFreedom="10"
+				pValue="0.761373164725917">6.61334802003569</LjungBoxStatistic>
+		</EstimationInfo>
+	</ARIMAModel>
+</TSCXML>

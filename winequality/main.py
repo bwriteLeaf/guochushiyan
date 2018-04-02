@@ -107,13 +107,14 @@ def read_data(data_file):
     return train_x, train_y, test_x, test_y
 
 
-if __name__ == '__main__':
+def trainTest(dataFile,attCnt,outFile,test_classifiers):
+    f = open(outFile, 'w')
+
     thresh = 0.5
     model_save_file = None
     model_save = {}
 
     # test_classifiers = ['NB', 'KNN', 'LR', 'RF', 'DT','GBDT']
-    test_classifiers = ['DT', 'GBDT']
     classifiers = {'NB': naive_bayes_classifier,
                    'KNN': knn_classifier,
                    'LR': logistic_regression_classifier,
@@ -124,13 +125,10 @@ if __name__ == '__main__':
 
 
     print('reading training and testing data...')
-    # tmp = np.loadtxt("winequality-white.csv", dtype=np.str, delimiter=";")
-    # X = tmp[1:, 0:11].astype(np.float)  # 加载数据部分
-    # y = tmp[1:, 11].astype(np.float)  # 加载类别标签部分
 
-    tmp = np.loadtxt("week-wti.csv", dtype=np.str, delimiter=",")
-    X = tmp[1:, 0:8].astype(np.float)  # 加载数据部分
-    y = tmp[1:, 8].astype(np.float)  # 加载类别标签部分
+    tmp = np.loadtxt(dataFile, dtype=np.str, delimiter=",")
+    X = tmp[1:, 0:attCnt].astype(np.float)  # 加载数据部分
+    y = tmp[1:, attCnt].astype(np.float)  # 加载类别标签部分
 
     random_state = check_random_state(0)  # 将样本进行随机排列
     permutation = random_state.permutation(X.shape[0])
@@ -152,10 +150,11 @@ if __name__ == '__main__':
     print('******************** Data Info *********************')
     print('#training data: %d, #testing_data: %d, dimension: %d' % (num_train, num_test, num_feat))
 
+    print("name,precision,recall,accuracy", file=f)
     for classifier in test_classifiers:
+
         print('******************* %s ********************' % classifier)
-        if classifier == 'NB':
-            continue
+        print('%s' % classifier, file=f,end='')
         start_time = time.time()
         model = classifiers[classifier](train_x, train_y)
         print('training took %fs!' % (time.time() - start_time))
@@ -166,8 +165,9 @@ if __name__ == '__main__':
             precision = metrics.precision_score(test_y, predict)
             recall = metrics.recall_score(test_y, predict)
             print('precision: %.2f%%, recall: %.2f%%' % (100 * precision, 100 * recall))
+            print(',%.2f%%,%.2f%%' % (100 * precision, 100 * recall), file=f,end='')
         accuracy = metrics.accuracy_score(test_y, predict)
-        print('accuracy: %.2f%%' % (100 * accuracy))
+        print(',%.2f%%' % (100 * accuracy), file=f)
 
     if model_save_file != None:
         pickle.dump(model_save, open(model_save_file, 'wb'))

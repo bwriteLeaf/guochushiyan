@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TSCXML
+	xmlns="http://www.ibm.com/software/analytics/spss/xml/components/time-series"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ibm.com/software/analytics/spss/xml/components/time-series www.ibm.com/software/analytics/spss/xml/components/time-series-1.0.xsd">
+	<Header>
+		<Application
+			name="IBM SPSS Statistics"
+			version="22.0.0.0"/>
+	</Header>
+	<DataDictionary/>
+	<ARIMAModel
+		modelName="模型_1"
+		modelDescriptor="油价_ARIMA"
+		variableID="油价">
+		<Transformation
+			nonSeasonalDiff="1"/>
+		<ConstantTerm>
+			<EstimatedParameter>0.107175366050932 0.264193568155358</EstimatedParameter>
+		</ConstantTerm>
+		<Autoregression>
+			<NonSeasonalFactor>
+				<LagTerm
+					lag="1">
+					<EstimatedParameter>-0.187118505704755 0.0479662891822318</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="2">
+					<EstimatedParameter>-0.0149046871545944 0.0488258559685741</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="3">
+					<EstimatedParameter>-0.0112702826808793 0.0488357423475457</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="4">
+					<EstimatedParameter>-0.0360927467269347 0.0488132959997284</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="5">
+					<EstimatedParameter>-0.0159486620322973 0.0488511685061329</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="6">
+					<EstimatedParameter>-0.0275991498777515 0.0489149486693513</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="7">
+					<EstimatedParameter>-0.00409606826140249 0.0489370470268876</EstimatedParameter>
+				</LagTerm>
+				<LagTerm
+					lag="8">
+					<EstimatedParameter>-0.169724731658235 0.0481908651125721</EstimatedParameter>
+				</LagTerm>
+			</NonSeasonalFactor>
+		</Autoregression>
+		<ARIMAMLSpState
+			periodDeficit="0">
+			<ZState>
+				<FinalZ>85.77</FinalZ>
+				<FinalPredictedZ>78.7675158706994</FinalPredictedZ>
+			</ZState>
+			<NoiseState>
+				<FinalNoise>-3.97717536605092 -2.09717536605094 -4.14717536605092 -2.75717536605094 -1.22717536605094 -2.01717536605093 -1.22717536605092 5.37282463394906</FinalNoise>
+			</NoiseState>
+			<ThetaRecursionState
+				finalIterationNumber="8">
+				<FinalThetas>
+					<ThetaVec/>
+					<ThetaVec>0.205426743641902</ThetaVec>
+					<ThetaVec>0.199325569436755 0.0706468022595731</ThetaVec>
+					<ThetaVec>0.198516824424277 0.0638417493069919 0.0462412244378658</ThetaVec>
+					<ThetaVec>0.19715043604471 0.062191998938001 0.034450909826794 0.064471391773836</ThetaVec>
+					<ThetaVec>0.19581343275675 0.0611988895460009 0.0333182411960342 0.056433753416046 0.0507195453872281</ThetaVec>
+					<ThetaVec>0.194795226505445 0.0590209216938753 0.0320556768724059 0.0550307624541493 0.0406796898027373 0.0572298633848251</ThetaVec>
+					<ThetaVec>0.193384435543347 0.0578403363560344 0.0297550194868962 0.0537416067333634 0.03923015748624 0.0469644962711558 0.0596187017479968</ThetaVec>
+				</FinalThetas>
+				<FinalNu>1.0833160612754 1.03759996423852 1.03668470771038 1.03591600743627 1.03330767753435 1.03257408208159 1.0310662056136 1.0296609111138</FinalNu>
+			</ThetaRecursionState>
+		</ARIMAMLSpState>
+		<EstimationInfo
+			periodStartIndex="0"
+			periodLength="436"
+			degreesOfFreedom="426">
+			<Statistic
+				type="errVariance">8.78277044160782</Statistic>
+			<Statistic
+				type="meanSqrErr">8.7836146789592</Statistic>
+			<Statistic
+				type="rootMeanSqrErr">2.96371636277144</Statistic>
+			<Statistic
+				type="meanAbsPctErr">3.09553116758629</Statistic>
+			<Statistic
+				type="meanAbsErr">2.20326503879105</Statistic>
+			<Statistic
+				type="maxAbsPctErr">17.9539272941844</Statistic>
+			<Statistic
+				type="maxAbsErr">13.9461572613705</Statistic>
+			<Statistic
+				type="rSqr">0.98248444481985</Statistic>
+			<Statistic
+				type="normBayesIC">2.29858483200263</Statistic>
+			<Statistic
+				type="logLikelihood">-1085.42974265962</Statistic>
+			<Statistic
+				type="akaikeIC">2188.85948531925</Statistic>
+			<Statistic
+				type="bayesIC">2225.53759959905</Statistic>
+			<Statistic
+				type="stationaryRSqr">0.0779167272164628</Statistic>
+			<LjungBoxStatistic
+				k="18"
+				degreesOfFreedom="10"
+				pValue="0.636324723133246">7.92334165322526</LjungBoxStatistic>
+		</EstimationInfo>
+	</ARIMAModel>
+</TSCXML>
