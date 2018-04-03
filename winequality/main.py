@@ -120,7 +120,8 @@ def trainTest(dataFile,attCnt,outFile,test_classifiers):
                    'LR': logistic_regression_classifier,
                    'RF': random_forest_classifier,
                    'DT': decision_tree_classifier,
-                   'GBDT': gradient_boosting_classifier
+                   'GBDT': gradient_boosting_classifier,
+                   "SVM":svm_classifier
                    }
 
 
