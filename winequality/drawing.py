@@ -56,8 +56,8 @@ class FigureHelper:
         return figureId
 
 
-    def linePlot(self,dataList, dataLabelList, xAxisLabelList,picPath):
-        id = self.lineChartPlot(dataList, dataLabelList, xAxisLabelList)
+    def linePlot(self,dataList, dataLabelList, xAxisLabelList,picPath, xLable=None, yLable=None):
+        id = self.lineChartPlot(dataList, dataLabelList, xAxisLabelList, xLable, yLable)
         f = plt.figure(id)
         f.savefig(picPath)
 

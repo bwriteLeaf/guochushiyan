@@ -76,6 +76,7 @@ def dataPre(docCnt,option,figureHelper):
     wtiPath = "wti-daliy-use.csv"
     picPath = "pic.png"
     outBasicPath = "wti-senti.csv"
+    picPath_wti = "pic-wti.png"
 
 
     isWeek = False
@@ -83,6 +84,7 @@ def dataPre(docCnt,option,figureHelper):
         isWeek = True
         wtiPath = "wti-week-use.csv"
         picPath = "pic-week.png"
+        picPath_wti = "pic-week-wti.png"
         outBasicPath = "wti-senti-week.csv"
 
     posList = ["positive","positives","success","successes","successful","succeed","succeeds","succeeding",
@@ -176,6 +178,13 @@ def dataPre(docCnt,option,figureHelper):
     wti_date,wti_value = alignDate(wti_date,wti_value,senDate)
     senDate, senValue = alignDate(senDate, senValue, wti_date)
 
+    wti_timeobj = []
+    for i in range(0, len(wti_date)):
+        timeobj = datetime.datetime.strptime(wti_date[i], "%Y/%m/%d")
+        wti_timeobj.append(timeobj)
+
+
+    figureHelper.linePlot([wti_value], ["wti"], wti_timeobj, picPath_wti,xLable="date",yLable="wti oil price")
 
 ## 两序列标准化
     wti_value = sklearn.preprocessing.scale(wti_value)
@@ -184,10 +193,6 @@ def dataPre(docCnt,option,figureHelper):
     # wti_value = wti_value.reshape(1, -1)
     # senValue = senValue.reshape(1, -1)
 
-    wti_timeobj = []
-    for i in range(0, len(wti_date)):
-        timeobj = datetime.datetime.strptime(wti_date[i], "%Y/%m/%d")
-        wti_timeobj.append(timeobj)
 
     ## 作图 同时打印输出两序列
     if option.startswith("draw"):
@@ -264,15 +269,16 @@ def preAndTest(docCnt,option,param_m,param_h,param_l,test_classifiers,figureHelp
 
 
 if __name__ == '__main__':
+    figureHelper = drawing.FigureHelper()
     # test_classifiers = ['KNN', 'LR', 'RF', 'DT', 'GBDT','SVM']
     # types = ["type1","type2","type1week","type2week"]
     # for type in types:
-    #     preAndTest(7785, type, 4, 1, 3,test_classifiers)
+    #     preAndTest(7785, type, 4, 1, 3,test_classifiers,figureHelper)
     #     pass
 
-    figureHelper = drawing.FigureHelper()
+
     types2 = ["draw","drawweek"]
     for type2 in types2:
         dataPre(7785, type2,figureHelper)
-        loadHpData(type2,figureHelper)
+        # loadHpData(type2,figureHelper)
 
